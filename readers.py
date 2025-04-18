@@ -20,7 +20,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 reading = False
 seen_tags = set()
 reader = None
-config = llrp.LLRPReaderConfig()
+# Create a configuration for the LLRP client with maximum power
+config = llrp.LLRPReaderConfig({
+    'transmit_power': 30  # Set the transmit power to the maximum value (adjust based on your reader's specs)
+})
 gui_update_queue = queue.Queue()
 
 def tag_report_callback(reader, tag_reports):
